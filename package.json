@@ -1,0 +1,19 @@
+{
+  "name": "edogawa",
+  "version": "0.0.1",
+  "description": "A test inspector",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bremen Braun",
+  "license": "MIT",
+  "dependencies": {
+    "babel-generator": "^6.26.1",
+    "babel-traverse": "^6.26.0",
+    "babel-types": "^6.26.0",
+    "babelon": "^1.0.5",
+    "globby": "^8.0.1",
+    "nodegit": "^0.22.0"
+  }
+}
