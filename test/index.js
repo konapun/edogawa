@@ -1,0 +1,2 @@
+import edogawa from 'src'
+
