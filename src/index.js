@@ -9,6 +9,7 @@ export default {
 }
 
 /////////
+/*
 import edogawa from 'edogawa'
 
 const conan = edogawa({
@@ -17,8 +18,8 @@ const conan = edogawa({
 
 // instrumenting files will produce a modified babel ast
 const instrumented = await conan.instrument([ // async
-  'src/**/*.test.js',
-  'src/**/*.spec.js'
+  'src//*.test.js',
+  'src//*.spec.js'
 ])
 
 // find test blocks using the specified matcher
@@ -28,4 +29,4 @@ const tests = await instrumented.findTests({ // async
 
 // find authors of tests
 const authors = await tests.findAuthors()
-
+*/
