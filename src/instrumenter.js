@@ -11,6 +11,7 @@ function instrumenter (options) {
     encoding: 'utf8',
     ...options
   }
+
   async function instrumentPath (path) {
     const buffer = await readFile(path, options.encoding)
     const ast = babylon(buffer)
@@ -21,8 +22,10 @@ function instrumenter (options) {
 
   return {
     async instrument (queries) {
+      console.log('Instrumenting!', queries)
       const matches = await globby(queries) // TODO: options for globby
 
+      console.log('Got matches', matches)
       return matches.map(async path => locater(instrumentPath(path)))
     }
   }

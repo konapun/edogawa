@@ -1,32 +1,22 @@
 import edoInstrumenter from './instrumenter'
 import matcher from './matchers'
+import language from './languages'
 
-const instrumenter = edoInstrumenter({})
+function edogawa (options) {
+  const extendedOpts = {
+    language: language.JAVASCRIPT,
+    ...options
+  }
 
-export default {
-  instrument: instrumenter.instrument,
-  matcher
+  const instrumenter = edoInstrumenter(extendedOpts)
+
+  return {
+    instrument: instrumenter.instrument,
+
+    // enums
+    language,
+    matcher
+  }
 }
 
-/////////
-/*
-import edogawa from 'edogawa'
-
-const conan = edogawa({
-  language: 'javascript'
-})
-
-// instrumenting files will produce a modified babel ast
-const instrumented = await conan.instrument([ // async
-  'src//*.test.js',
-  'src//*.spec.js'
-])
-
-// find test blocks using the specified matcher
-const tests = await instrumented.findTests({ // async
-  matcher: conan.matcher.JEST
-})
-
-// find authors of tests
-const authors = await tests.findAuthors()
-*/
+export default edogawa
