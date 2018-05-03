@@ -1,6 +1,7 @@
 import readFile from 'fs-readfile-promise'
 import globby from 'globby'
-import babylon from 'babylon'
+import { parse } from 'babylon'
+import finder from './finder'
 
 /**
  *
@@ -9,36 +10,25 @@ import babylon from 'babylon'
 function instrumenter (options) {
   const extendedOpts = {
     encoding: 'utf8',
+    sourceType: 'module',
     ...options
   }
 
   async function instrumentPath (path) {
-    const buffer = await readFile(path, options.encoding)
-    const ast = babylon(buffer)
+    const buffer = await readFile(path, extendedOpts.encoding)
+    const ast = parse(buffer, extendedOpts)
 
-    console.log('AST:', ast)
     return ast
   }
 
   return {
     async instrument (queries) {
-      console.log('Instrumenting!', queries)
       const matches = await globby(queries) // TODO: options for globby
+      const asts = await Promise.all(
+        matches.map(async path => instrumentPath(path))
+      )
 
-      console.log('Got matches', matches)
-      return matches.map(async path => locater(instrumentPath(path)))
-    }
-  }
-}
-
-/**
- * A grouping of operations related to finding tests on the instrumented AST
- * @param {*} ast
- */
-function locater (ast) {
-  return {
-    findTests (opts) {
-
+      return finder(asts)
     }
   }
 }
