@@ -25,7 +25,7 @@ function instrumenter (options) {
     async instrument (queries) {
       const matches = await globby(queries) // TODO: options for globby
       const asts = await Promise.all(
-        matches.map(async path => instrumentPath(path))
+        matches.map(path => instrumentPath(path))
       )
 
       return finder(asts)
