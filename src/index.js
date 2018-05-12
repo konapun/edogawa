@@ -12,11 +12,9 @@ function edogawa (options) {
 
   return {
     instrument: instrumenter.instrument,
-
-    // enums
-    language,
-    matcher
   }
 }
 
+export { matcher as matchers }
+export { language as languages }
 export default edogawa
