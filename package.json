@@ -6,7 +6,6 @@
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
   "scripts": {
-    "test": "NODE_ENV=development node bin/test",
     "start": "npm run test",
     "clean": "rm -rf dist",
     "build": "rollup -c",
