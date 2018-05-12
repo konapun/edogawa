@@ -12,16 +12,18 @@ const main = async () => {
     path.join(__dirname, 'repo', '**', '*.test.js')
   ])
 
-  console.log('Instrumented:', instrumented)
   // find test blocks using the specified matcher
   const tests = await instrumented.findTests({ // async
-    matcher: conan.matcher.JEST
+    matcher: [
+      conan.matcher.FILE()
+    ]
   })
 
-  /*
+  console.log('Tests:', tests)
   // find authors of tests
-  const authors = await tests.findAuthors()
-  */
+  const authors = tests.map(test => test.findAuthors())
+
+  console.log('Got authors', authors)
 }
 
 try {

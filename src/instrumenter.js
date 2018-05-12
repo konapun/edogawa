@@ -18,7 +18,7 @@ function instrumenter (options) {
     const buffer = await readFile(path, extendedOpts.encoding)
     const ast = parse(buffer, extendedOpts)
 
-    return ast
+    return { path, ast }
   }
 
   return {

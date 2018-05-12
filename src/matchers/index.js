@@ -1,5 +1,7 @@
-import jestMatcher from './jest'
+import fileMatcher from './file'
+import describeMatcher from './describe'
 
 export default {
-  JEST: jestMatcher
+  FILE: fileMatcher,
+  DESCRIBE: describeMatcher
 }
