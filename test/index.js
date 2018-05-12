@@ -1,4 +1,4 @@
-import edogawa, { languages, matchers } from '../src'
+import edogawa, { languages, matchers } from '../dist'
 import path from 'path'
 
 const main = async () => {
