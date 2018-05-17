@@ -4,11 +4,9 @@
       "presets": [
         "stage-2",
         ["es2015", { "modules": false }]
-      ]
-    },
-    "test": {
-      "presets": [
-        "es2015"
+      ],
+      "plugins": [
+        "external-helpers"
       ]
     }
   }
