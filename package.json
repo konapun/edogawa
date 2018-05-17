@@ -9,7 +9,6 @@
   "start": "npm run test",
   "clean": "rm -rf dist",
   "build": "BABEL_ENV=build rollup -c",
-  "production": "npm run build && node bin/production",
   "test": "ava"
  },
  "author": "Bremen Braun",
@@ -25,7 +24,6 @@
   "source-map-support": "^0.5.5"
  },
  "devDependencies": {
-  "@babel/register": "^7.0.0-beta.47",
   "ava": "1.0.0-beta.4",
   "babel-cli": "^6.26.0",
   "babel-plugin-external-helpers": "^6.22.0",
@@ -52,9 +50,6 @@
   "concurrency": 5,
   "failFast": true,
   "tap": true,
-  "require": [
-   "@babel/register"
-  ],
   "babel": {
    "testOptions": {
     "babelrc": false
