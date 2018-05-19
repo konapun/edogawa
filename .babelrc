@@ -6,7 +6,11 @@
         ["es2015", { "modules": false }]
       ],
       "plugins": [
-        "external-helpers"
+        "external-helpers",
+        ["transform-runtime", {
+          "polyfill": false,
+          "regenerator": true
+        }]
       ]
     }
   }
