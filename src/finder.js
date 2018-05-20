@@ -35,7 +35,9 @@ function finder (instrumenteds) {
       }
 
       const matchers = [].concat(extendedOpts.matcher)
-      return instrumenteds.map(instrumented => findTestsForInstrumented(instrumented, matchers))
+      return instrumenteds
+        .map(instrumented => findTestsForInstrumented(instrumented, matchers))
+        .reduce((tests, group) => tests.concat(group), [])
     }
   }
 }

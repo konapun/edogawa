@@ -9,7 +9,7 @@
   "start": "npm run test",
   "clean": "rm -rf dist",
   "build": "BABEL_ENV=build rollup -c",
-  "test": "ava"
+  "test": "npm run build && ava"
  },
  "author": "Bremen Braun",
  "license": "MIT",
