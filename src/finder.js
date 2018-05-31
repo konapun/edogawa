@@ -7,7 +7,7 @@ import test from './test'
  * A grouping of operations related to finding tests on instrumented ASTs
  * @param {*} instrumented
  */
-function finder (instrumenteds) {
+function finder (instrumenteds, options) {
 
   function findTestsForInstrumented (instrumented, matchers) {
     const tests = []
@@ -18,7 +18,7 @@ function finder (instrumenteds) {
 
         matchers.forEach(matcher => {
           if (matcher.match(node)) {
-            tests.push(test(instrumented.path, node))
+            tests.push(test(instrumented.path, node, options))
           }
         })
       }
@@ -37,7 +37,7 @@ function finder (instrumenteds) {
       const matchers = [].concat(extendedOpts.matcher)
       return instrumenteds
         .map(instrumented => findTestsForInstrumented(instrumented, matchers))
-        .reduce((tests, group) => tests.concat(group), [])
+        .reduce((tests, group) => [ ...tests, ...group ], [])
     }
   }
 }

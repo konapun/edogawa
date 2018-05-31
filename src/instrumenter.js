@@ -28,7 +28,7 @@ function instrumenter (options) {
         matches.map(path => instrumentPath(path))
       )
 
-      return finder(asts)
+      return finder(asts, options)
     }
   }
 }

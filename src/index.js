@@ -5,6 +5,7 @@ import language from './languages'
 function edogawa (options) {
   const extendedOpts = {
     language: language.JAVASCRIPT,
+    repository: null, // if repository is null, edogawa will attempt to locate it
     ...options
   }
 

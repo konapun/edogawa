@@ -2,12 +2,13 @@ import test from 'ava';
 import edogawa, { matchers } from '../dist'
 
 const buildFinder = async () => {
-  const conan = edogawa()
+  const repositoryPath = `${__dirname}/repo`
+  const conan = edogawa({ repositoryPath })
 
   const base = __dirname
   return await conan.instrument([
-    `${base}/repo/**/*.spec.js`,
-    `${base}/repo/**/*.test.js`
+    `${repositoryPath}/**/*.spec.js`,
+    `${repositoryPath}/**/*.test.js`
   ])
 }
 
@@ -36,7 +37,11 @@ test('Locates describe blocks within a test file', async t => {
 test('Finds authors for test files', async t => {
   const tests = await buildTests(matchers.FILE())
 
-  console.log('Tests:', tests)
-  const authors = tests.map(test => test.findAuthors())
+  console.log('Have tests', tests)
+  const authors = await Promise.all(
+    tests.map(test => test.getBlame())
+    // .map(blame => )
+  )
   console.log('Authors:', authors)
+  t.pass()
 })
