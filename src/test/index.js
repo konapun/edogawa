@@ -17,7 +17,7 @@ function test (file, match, options) {
       const blame = await Blame.file(repo, filePath)
 
       const hunks = [...Array(blame.getHunkCount()).keys()].map(i => blame.getHunkByIndex(i))
-      return hunks.map(createBlame)
+      return createBlame(hunks)
     }
   }
 }

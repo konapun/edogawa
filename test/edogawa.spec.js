@@ -37,11 +37,8 @@ test('Locates describe blocks within a test file', async t => {
 test('Finds authors for test files', async t => {
   const tests = await buildTests(matchers.FILE())
 
-  console.log('Have tests', tests)
-  const authors = await Promise.all(
-    tests.map(test => test.getBlame())
-    // .map(blame => )
-  )
+  const blames = await Promise.all(tests.map(test => test.getBlame()))
+  const authors = blames.map(blame => blame.originalSignature.name)
   console.log('Authors:', authors)
   t.pass()
 })
